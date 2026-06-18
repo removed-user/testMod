@@ -1,7 +1,11 @@
-{ flake-parts-lib, self, withSystem, ... }:
-let
-  inherit (flake-parts-lib) importApply;
-in
 {
-  flake.flakeModules.default = importApply ./flake-module.nix { providerFlake = self; inherit withSystem; };
+  flake-parts-lib,
+  self,
+  ...
+}: let
+  inherit (flake-parts-lib) importApply;
+in {
+  flake.flakeModules.default = importApply ./flakeModule.nix {
+    providerFlake = self;
+  };
 }

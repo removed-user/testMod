@@ -1,11 +1,12 @@
 {
   inputs = {
     nixpkgs-lib.url = "github:nix-community/nixpkgs.lib";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.url = "github:removed-user/flake-parts/Add-a-Check-in-mkTransposedPersystemModule";
   };
 
   outputs = inputs @ {flake-parts, ...}:
     flake-parts.lib.mkFlake {inherit inputs;} {
+      debug = true;
       disabledModules = [
         inputs.flake-parts.flakeModules.nixosModules
         inputs.flake-parts.flakeModules.nixosConfigurations
@@ -21,6 +22,6 @@
       ];
 
       # 3. Downstream export
-      flake.flakeModules.default = ./functionTo_flakeModule.nix;
+      flake.flakeModules.default = ./flakeModule.nix;
     };
 }
